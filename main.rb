@@ -3,11 +3,12 @@ require 'securerandom'
 
 post '/upload' do
   name = upload params[:file][:tempfile] 
-  "#{request.base_url}/i/#{name}"
+  "#{request.base_url}/i/#{name}.jpg"
 end
 
-get '/i/:file' do |file|
+get '/i/:file.?:format?' do |file, format|
   @file = file
+  p params
   haml "%img{ src: \"/#{@file}\"}" 
 end
 

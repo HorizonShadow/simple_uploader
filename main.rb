@@ -7,9 +7,8 @@ post '/upload' do
 end
 
 get '/i/:file.?:format?' do |file, format|
-  @file = file
-  p params
-  haml "%img{ src: \"/#{@file}\"}" 
+  content_type 'image/png'
+  send_file File.join(settings.public_folder, file), disposition: :inline
 end
 
 def upload(file)
